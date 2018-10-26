@@ -1,0 +1,12 @@
+#!/bin/sh
+
+usage() {
+	cat <<-EOT
+		usage: $(basename $0) SOURCE DIRECTORY
+	EOT
+}
+
+[ $# -ne 2 ] && usage && exit 1
+
+mkdir -p $2
+mv $1 $2 && ln -s ${2%/}/$(basename $1) $1
